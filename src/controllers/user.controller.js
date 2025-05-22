@@ -31,11 +31,10 @@ const registerUser = async (req, res) => {
     const refreshToken = user.generateRefreshToken();
 
     user.refreshToken = refreshToken;
-
     const options = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production" ? true : false,
-      sameSite: "strict",
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 3600000,
     };
 
@@ -81,7 +80,7 @@ const loginUser = async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
     maxAge: 3600000,
   };
