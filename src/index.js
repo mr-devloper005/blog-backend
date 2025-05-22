@@ -4,9 +4,11 @@ import app from "./app.js";
 
 configDotenv({ path: "./.env" });
 
+const PORT = process.env.PORT || 8000;
+
 dbConnect().then(() => {
   try {
-    app.listen(process.env.PORT, () => {
+    app.listen(PORT, () => {
       console.log(`app running on http://localhost:${process.env.PORT}`);
     });
   } catch (error) {
