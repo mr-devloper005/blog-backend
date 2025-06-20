@@ -40,7 +40,7 @@ const registerUser = async (req, res) => {
 
     await user.save();
 
-    res
+    return res
       .status(201)
       .cookie("accessToken", accessToken, options)
       .cookie("refreshToken", refreshToken, options)
@@ -87,7 +87,7 @@ const loginUser = async (req, res) => {
 
   user.refreshToken = refreshToken;
 
-  res
+  return res
     .status(200)
     .cookie("accessToken", accessToken, options)
     .cookie("refreshToken", refreshToken, options)
